@@ -37,6 +37,25 @@ Supprime un mod donné.
 {"status": "removed"}
 ```
 
+### GET /api/user/preferences
+Renvoie les préférences de l'utilisateur connecté.
+
+**Réponse**
+```json
+{"autoRestart": true}
+```
+
+### POST /api/user/preferences
+Met à jour les préférences utilisateur.
+
+**Paramètres**
+- `autoRestart` *(boolean)* : redémarrage automatique.
+
+**Réponse**
+```json
+{"status": "saved"}
+```
+
 ## Gestion des erreurs
 Les erreurs renvoient un code HTTP approprié et un objet :
 ```json
