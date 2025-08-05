@@ -1,0 +1,15 @@
+# Dependencies
+/vendor/
+/node_modules/
+
+# Environment files
+.env
+
+# Laravel caches
+bootstrap/cache/
+storage/
+
+# OS/Editor
+.DS_Store
+*.swp
+.phpunit.result.cache
