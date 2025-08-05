@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 class UserPreferencesController extends Controller
 {
     /**
@@ -11,12 +11,11 @@ class UserPreferencesController extends Controller
      */
     public function show(Request $request): JsonResponse
     {
-        // Placeholder preferences
         $prefs = [
             'autoRestart' => true,
         ];
 
-        return response()->json($prefs);
+        return new JsonResponse($prefs);
     }
 
     /**
@@ -24,8 +23,7 @@ class UserPreferencesController extends Controller
      */
     public function update(Request $request): JsonResponse
     {
-        $prefs = $request->only(['autoRestart']);
-        // TODO: persist preferences
-        return response()->json(['status' => 'saved', 'preferences' => $prefs]);
+        $prefs = ['autoRestart' => filter_var($request->get('autoRestart', true), FILTER_VALIDATE_BOOLEAN)];
+        return new JsonResponse(['status' => 'saved', 'preferences' => $prefs]);
     }
 }

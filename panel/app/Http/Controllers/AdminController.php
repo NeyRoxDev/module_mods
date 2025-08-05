@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 class AdminController extends Controller
 {
     /**
@@ -11,12 +11,11 @@ class AdminController extends Controller
      */
     public function index(): JsonResponse
     {
-        // Placeholder data
         $mods = [
             ['name' => 'WorldEdit', 'version' => '7.3.0'],
         ];
 
-        return response()->json($mods);
+        return new JsonResponse($mods);
     }
 
     /**
@@ -24,9 +23,8 @@ class AdminController extends Controller
      */
     public function install(Request $request): JsonResponse
     {
-        $url = $request->input('url');
-        // TODO: implement real install logic
-        return response()->json(['status' => 'installed', 'url' => $url]);
+        $url = $request->get('url');
+        return new JsonResponse(['status' => 'installed', 'url' => $url]);
     }
 
     /**
@@ -34,8 +32,7 @@ class AdminController extends Controller
      */
     public function uninstall(Request $request): JsonResponse
     {
-        $name = $request->input('name');
-        // TODO: implement real uninstall logic
-        return response()->json(['status' => 'removed', 'name' => $name]);
+        $name = $request->get('name');
+        return new JsonResponse(['status' => 'removed', 'name' => $name]);
     }
 }
